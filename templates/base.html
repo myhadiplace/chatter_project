@@ -1,0 +1,55 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    {% block css_files %} {% endblock %}
+    <title>{% block title %} {% endblock %}</title>
+  </head>
+  <body>
+    {% block variable %}
+    {% endblock %}
+      <header>
+        <div class="header-container">
+          <div class="logo">
+            <img src="{% static "images/logo.png" %}" alt="Logo">
+          </div>
+          <nav>
+            <ul>
+              <li><a href="{% url 'home' %}">Home</a></li>
+              {% if logged_user == None %}
+              <li><a href="{% url "login" %}">Login</a></li>
+              <li><a href="{% url "singup" %}">Signup</a></li>
+              {% else %}
+              <li><a href="{% url 'status' logged_user.user_name%}">Me</a></li>
+              <li class="caution"><a href="{% url 'logout' %}">LogOut</a></li>
+              {%endif%}
+            </ul>
+          </nav>
+          <form action={% url 'search' %} method="POST">
+            <div class="search"> 
+              {% csrf_token %}            
+              <input type="text" placeholder="Search" name="search-query">
+              <button type="submit">Search</button>
+            </div>
+        </form>
+        </div>
+      </header>
+ 
+    
+
+    
+    {% block content%}
+    
+    {% endblock %}
+  <script src="{% static 'post.js' %}"></script>
+
+  {% comment %} MediumEditor {% endcomment %}
+  <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+
+  </body>
+</html>

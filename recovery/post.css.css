@@ -1,0 +1,176 @@
+.post-card {
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.reply-1 {
+  margin-left: 200px;
+  max-width: 600px;
+}
+
+.reply-2 {
+  margin-left: 200px;
+  max-width: 550px;
+}
+
+.reply-3 {
+  margin-left: 200px;
+  max-width: 500px;
+}
+
+.reply-4 {
+  margin-left: 200px;
+  max-width: 450px;
+}
+
+.reply-5 {
+  margin-left: 200px;
+  max-width: 400px;
+}
+
+.reply-6 {
+  margin-left: 200px;
+  max-width: 350px;
+}
+
+.reply-7 {
+  margin-left: 200px;
+  max-width: 300px;
+}
+
+.reply-8 {
+  margin-left: 200px;
+  max-width: 250px;
+}
+
+.post-card .user-info-post {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.post-card .user-info-post img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.post-card .user-info-post .username {
+  font-weight: bold;
+  margin: 0;
+}
+
+.post-card .post-content {
+  margin-bottom: 10px;
+}
+
+.post-card .post-date {
+  font-size: 12px;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.post-card .engagement {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #777;
+}
+
+.post-card .engagement span {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+
+
+/* like button style */
+.like-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.like-button.animated {
+  -webkit-animation: pop 0.9s both;
+  animation: pop 0.9s both;
+}
+.like-button svg {
+  opacity: 1;
+}
+.like-button svg path {
+  fill: #333;
+  transition: fill .4s ease-out;
+}
+.like-button.active svg path {   
+  fill: #2196f3;
+ }
+
+@-webkit-keyframes pop {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+    transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+    transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+    transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+    transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+    transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes pop {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+    transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+    transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+    transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+    transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+    transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+} 

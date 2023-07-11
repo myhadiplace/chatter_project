@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% load static %} {% block title %} Edit profile 
+{%endblock %} 
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'chatter/css/edit_profile.css' %}" />
+{% endblock %} {% block content %}
+
+<div class="edit-profile-form">
+  <div class="main-form">
+    <form
+      action="{% url 'edit_profile' %}"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      {% for field in profile_form %}
+      <div class="form-group">
+        {% csrf_token %} {{ field.label_tag}} <br> {{field}} {{field.errors}}
+      </div>
+      {% endfor %}
+      <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-submit" />
+      </div>
+    </form>
+  </div>
+  <div class="avatar-form">
+    <form action="{% url 'updateavatar' %}" method="post" enctype="multipart/form-data">
+      {% for field in avatar_form %}
+      <div class="form-group">
+        {% csrf_token %} {{ field.label_tag}} <br> {{field}} {{field.errors}}
+      </div>
+      {% endfor %}
+      <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-submit" />
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

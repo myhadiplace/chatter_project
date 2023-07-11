@@ -1,0 +1,110 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f1f1;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-top: 0;
+  }
+  
+  .profile-image {
+    text-align: center;
+  }
+  
+  .profile-image img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .user-info {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .user-info p {
+    margin: 5px 0;
+  }
+  
+  .user-info .username {
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .user-info .bio {
+    font-style: italic;
+    color: #666;
+  }
+  
+  .stats {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .stats .item {
+    text-align: center;
+    margin: 0 10px;
+  }
+  
+  .stats .value {
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  .stats .label {
+    color: #666;
+  }
+  
+  .posts {
+    margin-top: 20px;
+  }
+  
+  .posts .post {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+  }
+  
+  .posts .post p {
+    margin: 0;
+  }
+  
+  
+  .new-twitte-form {
+    display: flex;
+    margin-top: 80px;
+    justify-content: center;
+    align-items: center;
+  
+  }
+  
+  
+  
+  .new-twitte-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #148dff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .new-twitte-btn:hover {
+    background-color: #0186f3;
+  }

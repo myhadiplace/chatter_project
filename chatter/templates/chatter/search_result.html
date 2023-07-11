@@ -1,0 +1,54 @@
+
+{% extends 'base.html' %}
+{% load chatter_tags %}
+{% load static %}
+{% block css_files%}
+<link rel="stylesheet" href="{% static 'chatter/css/search_result.css' %}"/>
+<link rel="stylesheet" href="{% static 'chatter/css/include/post.css' %}"/>
+{%endblock%}
+{% block title%} result {% endblock %}
+{% block content%} 
+
+{% if not result%}
+
+    <h2>
+        search for <a href="{% url 'search'%}?q={{query}}&in=users ">users</a>
+    </h2>
+
+    <h2>
+        search for <a href="{% url 'search'%}?q={{query}}&in=posts ">posts</a>
+    </h2>
+
+{% elif result and search_in == "users" %}
+    {% if result == 'Not found' %}
+        <h1>   Nothing Found  </h1>
+    {% else %}
+    {% for user in result %}
+    <a href="{% url 'status' user.user_name %}"
+    <ul class="user-list">
+        <li class="user-list-item">
+        <img class="user-avatar" src="/user-media/avatar/{{user.profile_img}}" alt="User Avatar">
+        <span class="user-name">{{user.name}}</span>
+        </li>
+    </ul>
+    {% endfor %} 
+    {% endif %}
+
+{% elif result and search_in == "posts" %}
+    {% if result == 'Not found' %}
+    <h1>   Nothing Found  </h1>
+    {% else %}
+
+    {% for post in result%}
+    {% include "chatter/include/post.html"%}
+    {% endfor %}
+    {% endif %}
+
+{% endif %}
+
+
+
+{%endblock%}
+
+
+

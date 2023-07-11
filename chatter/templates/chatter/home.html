@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {%load static%} {% block 'title' %} home {%endblock%}
+{%block css_files %}
+<link rel="stylesheet" href="{% static 'chatter/include/css/post.css' %}" />
+
+{% endblock %} 
+
+{% block content %} 
+
+{% for post in posts %} 
+
+{% include 'chatter/include/post.html' %} 
+
+{% endfor %} 
+
+
+<div id="posts-container"> </div>
+
+
+
+
+<button class="load-more" type='submit'>Load Template</button>
+
+<script src="{% static 'chatter/js/load-more.js' %}"></script>
+{% endblock%}

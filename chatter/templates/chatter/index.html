@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% load static %} {% block css_files %}
+
+<link rel="stylesheet" href="{% static 'chatter/include/css/post.css'%}" />
+<link rel="stylesheet" href="{% static 'chatter/css/index.css' %}" />
+{% endblock %} 
+
+{% block title %} workout plan {% endblock %} 
+
+{%block content%}
+<h1>weekly workout plan</h1>
+<div>
+  <ul>
+    {% for day in workout_plan %} {% comment %}
+    <li><a href="{{day}}"> {{day}} </a></li>
+    {% endcomment %}
+    <li><a href="{% url 'days_by_name' day %}"> {{day}} </a></li>
+    <br />
+    {% endfor %}
+  </ul>
+</div>css/
+
+<section id="blog-posts">
+  {% for user in users %}
+  <div class="post-card post-card-{%cycle '1' '2' '3' %}">
+    {% include 'chatter/include/post.html' %}
+  </div>
+
+  {%endfor%}
+</section>
+
+{% endblock %}

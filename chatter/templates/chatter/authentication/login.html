@@ -1,0 +1,22 @@
+{% extends 'base.html'%} {% load static %} {% block css_files%}
+<link rel="stylesheet" href="{% static 'chatter/single-post.css' %}" />
+{% endblock %} {% block title %} login page {%endblock%} {% block content %}
+{%if not logged%}
+<div class="form-container">
+  <form action="{% url 'login' %}" method="POST">
+    {%if error%} {{error}} {%endif%} {% for field in form %}
+    <div class="form-group">
+      {% csrf_token %} {{ field.label_tag}} {{field}}
+    </div>
+    {%endfor%}
+    <div class="form-group">
+      <input type="submit" value="Send" class="btn btn-submit" />
+    </div>
+  </form>
+</div>
+{%else%}
+
+<h1>you already logged in</h1>
+<h2>do you want to <a href="{% url 'logout' %}"> logOut? </a></h2>
+
+{%endif%} {%endblock%}

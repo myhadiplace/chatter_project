@@ -1,0 +1,93 @@
+
+
+.reply-post-card {
+    position: relative;
+    max-width: 650px;
+    max-height: 200px;
+    margin: 20px 0px 20px 200px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .reply-0 {
+    max-width: 700px;
+  }
+
+
+  .reply-1 {
+    max-width: 600px;
+  }
+
+  .reply-2 {
+    max-width: 550px;
+  }
+
+  .reply-3 {
+    max-width: 500px;
+  }
+
+  .reply-4 {
+    max-width: 450px;
+  }
+
+  .reply-5 {
+    max-width: 400px;
+  }
+
+  .reply-6 {
+    max-width: 350px;
+  }
+
+  .reply-7 {
+    max-width: 300px;
+  }
+
+  .reply-8 {
+    max-width: 250px;
+  }
+  
+  .reply-post-card .user-info-post {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .reply-post-card .user-info-post img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  .reply-post-card .user-info-post .username {
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .reply-post-card .post-content {
+    margin-bottom: 10px;
+  }
+  
+  .reply-post-card .post-date {
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 10px;
+  }
+  
+  .reply-post-card .engagement {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #777;
+  }
+  
+  .reply-post-card .engagement span {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+
+  

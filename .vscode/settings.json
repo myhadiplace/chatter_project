@@ -1,0 +1,12 @@
+{
+  "html.format.templating": false,
+  "html.format.enable": true,
+  "html.format.preserveNewLines": true,
+  "html.format.wrapAttributes": "auto",
+  "html.format.indentInnerHtml": true,
+  "prettier.htmlWhitespaceSensitivity": "css",
+  "prettier.ignorePath": ".prettierignore ",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  }
+}

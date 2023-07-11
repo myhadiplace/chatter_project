@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {%load static%} {% block 'title' %} home {%endblock%}
+{%block css_files %}
+<link rel="stylesheet" href="{% static 'chatter/css/follow_list.css' %}" />
+
+{% endblock %} 
+
+{% block content %} 
+
+
+<h1>User List</h1>
+{% for user in follow_user %} 
+<a href="{% url 'status' user.user_name %}"
+  <ul class="user-list">
+    <li class="user-list-item">
+      <img class="user-avatar" src="/user-media/avatar/{{user.profile_img}}" alt="User Avatar">
+      <span class="user-name">{{user.name}}</span>
+    </li>
+  </ul>
+{% endfor %} 
+
+
+{% endblock%}
+
+
+

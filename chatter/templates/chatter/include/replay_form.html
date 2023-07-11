@@ -1,0 +1,22 @@
+{% load chatter_tags %}
+<div class="form-container">
+    <form action="{% url 'replytwitte' username=user.user_name postid=post|post_id %}" method="POST">
+      {% for field in form %}
+      <div class="form-group">
+        {% csrf_token %}       
+        {% if field.label == 'your idea' %} 
+        {{ field.label_tag }} {{field}} 
+        <span class="char-limit" >limit: <span class="limit-number">0/120</span></span>
+        {% else %}
+        {{ field.label_tag }} {{field}}
+        {% endif %}
+      </div>
+      {%endfor%} 
+      <div class="form-group">
+        <input type="submit" value="Send" class="btn btn-submit submit-twitte" />
+      </div>
+    </form>
+  </div>
+
+
+  
