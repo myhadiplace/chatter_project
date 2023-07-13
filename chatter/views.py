@@ -16,7 +16,7 @@ from pymongo import MongoClient, errors, TEXT
 from bson.objectid import ObjectId
 from bson.dbref import DBRef
 
-cluster = "mongodb://hadi:54P9834jJ81946@localhost:27017/?authMechanism=DEFAULT&authSource=chatter"
+cluster = "mongodb+srv://hadimr99:U5VAz7Lp3SyVtdkH@hadi.niy8gxm.mongodb.net/"
 client = MongoClient(cluster)
 db = client.chatter
 
