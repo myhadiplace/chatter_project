@@ -76,11 +76,11 @@ WSGI_APPLICATION = 'chatter_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'railway',
-        'USER': 'root',
-        'PASSWORD': 'bRU1u7xp6wIkLnaPEKlB',
-        'HOST': 'containers-us-west-44.railway.app',
-        'PORT': '7412',
+        'NAME': 'sql6632689',
+        'USER': 'sql6632689',
+        'PASSWORD': 'G2X2PzwJfF',
+        'HOST': 'sql6.freemysqlhosting.net',
+        'PORT': '3306',
     }
 }
 
