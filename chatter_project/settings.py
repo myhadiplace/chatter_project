@@ -75,11 +75,12 @@ WSGI_APPLICATION = 'chatter_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        'OPTIONS': {
-            'deterministic': False,
-        },
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'railway',
+        'USER': 'root',
+        'PASSWORD': 'bRU1u7xp6wIkLnaPEKlB',
+        'HOST': 'containers-us-west-44.railway.app',
+        'PORT': '7412',
     }
 }
 
