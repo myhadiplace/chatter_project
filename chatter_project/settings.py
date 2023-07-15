@@ -79,30 +79,28 @@ import pymysql
 pymysql.version_info = (2, 2, 0, "final", 0) # to pass Django's compatibility check
 pymysql.install_as_MySQLdb() # to pretend as MySQLdb
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'railway',
-        'USER': 'root',
-        'PASSWORD': 'bRU1u7xp6wIkLnaPEKlB',
-        'HOST': 'containers-us-west-44.railway.app',
-        'PORT': '7412',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-        },
-    }
-}
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': os.environ.get('DATABASE_NAME'),
-#         'USER': os.environ.get('DATABASE_USER'),
-#         'PASSWORD': os.environ.get('DATABASE_PASS'),
-#         'HOST': os.environ.get('DATABASE_HOST'),
-#         'PORT': os.environ.get('DATABASE_PORT'),
+#         'NAME': 'railway',
+#         'USER': 'root',
+#         'PASSWORD': 'bRU1u7xp6wIkLnaPEKlB',
+#         'HOST': 'containers-us-west-44.railway.app',
+#         'PORT': '7412',
+
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.environ.get('DATABASE_NAME'),
+        'USER': os.environ.get('DATABASE_USER'),
+        'PASSWORD': os.environ.get('DATABASE_PASS'),
+        'HOST': os.environ.get('DATABASE_HOST'),
+        'PORT': os.environ.get('DATABASE_PORT'),
+    }
+}
 
 
 
