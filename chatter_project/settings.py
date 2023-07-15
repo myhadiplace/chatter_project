@@ -74,10 +74,6 @@ WSGI_APPLICATION = 'chatter_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-import pymysql
-
-pymysql.version_info = (2, 2, 0, "final", 0) # to pass Django's compatibility check
-pymysql.install_as_MySQLdb() # to pretend as MySQLdb
 
 # DATABASES = {
 #     'default': {
