@@ -1,0 +1,10 @@
+{
+  "deploy": {
+    "type": "python",
+    "version": "3.8"
+  },
+  "addons": [],
+  "build": {
+    "publish": "/chatter_project"
+  }
+}
