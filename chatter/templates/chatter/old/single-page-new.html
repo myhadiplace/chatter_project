@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Card With Dynamic Themes</title>
+    <!--Google Font-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!--Stylesheet-->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+			<div class='banner'> </div>
+            <img src="/user-media/avatar/{{user.profile_img}}" alt="profile_img">
+			{% if followed != None%}
+			<form action="{% url 'fallowuser' user.user_name %}" method="POST">
+				{% csrf_token %}
+				<button class="follow-btn" type="submit"> {% if followed %}Unfollow {%else%} Follow{%endif%} </button>
+			</form>
+			<a class="setting-btn" href="#"><span></span></a>
+			{%endif%}
+            <div class="details">
+                <h2> {{user.name}} </h2> 
+				<h3>@{{user.user_name}}</h3>
+				<p>{{user.bio}}</p> 
+				<div class='engagement'>
+					<a href="{% url 'indexfollows' username=user.user_name kind='followings' %}"> {{user.followingsNum}} <span>following</span> </a>
+					<a href="{% url 'indexfollows' username=user.user_name kind='followers' %}"> {{user.followersNum}} <span>follower</span> </a>
+					
+				</div>
+				
+				
+            </div>
+			<hr>
+          
+        </div>
+        
+
+    <!--Script-->
+    <script src="script.js"></script>
+</body>
+</html>

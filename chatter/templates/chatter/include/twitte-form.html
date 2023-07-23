@@ -1,7 +1,8 @@
-<div class="form-container">
-  <form action="{% url 'posttwitte' user.user_name %}" method="POST">
+
+<div class="form-container {% if form.errors %}shown{% endif %}">
+  <form action="{% url 'posttwitte' logged_user.user_name %}" method="POST">
     {% for field in form %}
-    <div class="form-group">
+    <div class="form-group ">
       {% csrf_token %}
       {% if field.label == 'your idea' %}
       {{ field.label_tag }} {{field}} {{field.errors}}
@@ -11,7 +12,7 @@
       {% endif %}
     </div>
     {%endfor%} 
-    <div class="form-group">
+    <div class="form-group submit-div">
       <input type="submit" value="Send" class="btn btn-submit submit-twitte" />
     </div>
   </form>

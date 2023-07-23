@@ -26,22 +26,23 @@
 
 {% block content %}
 
+<div class="container">
+  {% for reply in reply_to %}
+  {% include 'chatter/include/reply.html' with loop_type='reply_to' %}
+  {% endfor%}
 
-{% for reply in reply_to %}
-{% include 'chatter/include/reply.html' with loop_type='reply_to' %}
-{% endfor%}
+  {% include 'chatter/include/post.html' %}
 
-{% include 'chatter/include/post.html' %}
-
-{% for reply in replys%}
-{% include 'chatter/include/reply.html' %}
-{%endfor%}
+  {% for reply in replys%}
+  {% include 'chatter/include/reply.html' %}
+  {%endfor%}
+</div>
 
 {% if logged_user %}
-{% include 'chatter/include/replay_form.html' %}
+{% include "chatter/include/replay_form.html"%}
 {% endif %}
 
 <script src="https://cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
-<script src="{% static 'chatter/js/medium-editor.js'%}"> </script>
-<script src="{% static 'chatter/js/twitte-form.js'%}">  </script>
+<script src="{% static 'chatter/include/js/medium-editor.js'%}"></script>
+<script src="{% static 'chatter/include/js/twitte-form.js' %}"> </script>
 {%endblock%}

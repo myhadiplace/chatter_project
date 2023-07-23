@@ -5,9 +5,9 @@
 <link rel="stylesheet" href="{% static 'chatter/css/edit_profile.css' %}" />
 {% endblock %} {% block content %}
 
-<div class="edit-profile-form">
+<div class="edit-profile">
   <div class="main-form">
-    <form
+    <form class='edit-profile-form'
       action="{% url 'edit_profile' %}"
       method="POST"
       enctype="multipart/form-data"
@@ -23,13 +23,14 @@
     </form>
   </div>
   <div class="avatar-form">
-    <form action="{% url 'updateavatar' %}" method="post" enctype="multipart/form-data">
+    <form class='edit-profile-form' action="{% url 'updateavatar' %}" method="post" enctype="multipart/form-data">
       {% for field in avatar_form %}
       <div class="form-group">
         {% csrf_token %} {{ field.label_tag}} <br> {{field}} {{field.errors}}
       </div>
       {% endfor %}
       <div class="form-group">
+        <label for="id_avatar" class="custom-file-button"><span></span>Select Image</label>
         <input type="submit" value="Save" class="btn btn-submit" />
       </div>
     </form>

@@ -8,7 +8,12 @@ header {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+ input{
+  font-family: 'Montserrat', sans-serif;
+ }
+
 .header-container {
+  font-family: 'Montserrat', sans-serif;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -50,13 +55,17 @@ nav ul li.caution a:hover {
   color: #fff;
 }
 
+
+
 .search input[type="text"] {
+  font-family: 'Montserrat', sans-serif;
   padding: 8px;
   border: none;
   border-radius: 20px;
 }
 
 .search button[type="submit"] {
+  font-family: 'Montserrat', sans-serif;
   padding: 8px 15px;
   border: none;
   border-radius: 20px;
@@ -68,3 +77,45 @@ nav ul li.caution a:hover {
 .search button[type="submit"]:hover {
   background-color: #555;
 }
+
+
+
+/* new twitte botton style */
+.new-twitte-btn {
+    position: fixed;
+    right: 70px;
+    bottom: 70px;
+    background: linear-gradient(to right,#378de5 ,#319be5);
+    background-color: #378de5;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 800;
+    font-style: normal;
+    text-decoration: none;
+    padding: 14px 9px;
+    border: 0px solid #000;
+    border-radius: 50px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+ }
+ 
+ .new-twitte-btn span{
+  margin-right: 9px;
+  display: block;
+  width: 29px;
+  height: 29px;
+  background-image:url("images/feather-add.png");
+
+  background-repeat: no-repeat;
+  background-size: 34px;
+  transform: rotate(3deg);
+ }
+ .new-twitte-btn:hover{
+  background: linear-gradient(to right,#609ce8 ,#5da8e8);
+  background-color: #609ce8;
+ }
+ .new-twitte-btn:active{
+  transform: scale(0.95);
+ }

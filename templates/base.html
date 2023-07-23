@@ -5,12 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     {% block css_files %} {% endblock %}
     <title>{% block title %} {% endblock %}</title>
   </head>
   <body>
-    {% block variable %}
-    {% endblock %}
+
       <header>
         <div class="header-container">
           <div class="logo">
@@ -41,15 +43,18 @@
     
 
     
-    {% block content%}
     
+    {% block content%}
+
     {% endblock %}
+
+
   <script src="{% static 'post.js' %}"></script>
 
   {% comment %} MediumEditor {% endcomment %}
   <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
-
-
+ 
+       
   </body>
 </html>

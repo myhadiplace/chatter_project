@@ -1,0 +1,56 @@
+{% extends 'base.html' %} {% load static %} {% block css_files %}
+<link rel="stylesheet" href="{% static 'chatter/css/single-page.css'%}" />
+<link rel="stylesheet" href="{% static 'chatter/include/css/post.css'%}" />
+<link rel="stylesheet" href="{% static 'chatter/include/css/twitte-form.css'%}" />
+
+{% endblock %} {% block title %} user {% endblock %} {%block content%}
+
+
+<div class="container">
+
+
+
+  <h1>{{user.name}}</h1>
+  <div class="profile-image">
+    <img src="/user-media/avatar/{{user.profile_img}}" alt="Profile Image" />
+  </div>
+  <div class="user-info">
+    <p class="username">{{user.user_name}}</p>
+    <p class="bio">{{user.bio}}</p>
+  </div>
+  <div class="stats">
+    <div class="item">
+      <p class="value">{{user.followersNum}}</p>
+      <p class="label"><a href="{% url 'indexfollows' username=user.user_name kind='followers' %}"> Followers </a> </p>
+    </div>
+    <div class="item">
+      <p class="value">{{user.followingsNum}}</p>
+      <p class="label"><a href="{% url "indexfollows" username=user.user_name kind="followings" %}"> Followings </a> </p>
+    </div>
+    <div class="item">
+      <p class="value">{{user.postNum}}</p>
+      <p class="label">Posts</p>
+    </div>
+  </div>
+  
+  {% if followed != None%}
+  <div class='followuser-form'>
+    <form action="{% url 'fallowuser' user.user_name %}" method="POST">
+      {% csrf_token %}
+      <button class="follow-user-btn" type="submit"> {% if followed %}unfollow {%else%} follow{%endif%} </button>
+    </form>
+  </div>
+  {%endif%}
+  
+  <div class='new-twitte-form'>
+    <form action="{% url 'posttwitte' user.user_name %}" method="GET">
+      {% csrf_token %}
+      <button class="new-twitte-btn" type="submit"> New Twitte </button>
+    </form>
+  </div>
+
+  {%for post in posts%} {% include 'chatter/include/post.html'%} {% endfor %}
+
+</div>
+{% endblock %}
+

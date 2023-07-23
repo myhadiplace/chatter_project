@@ -2,11 +2,20 @@ const getCookie = function (name) {
   return document.cookie.split("=")[1];
 };
 
-let button = document.querySelectorAll(".like-button");
+let isFetching = false;
 
-button.forEach(function (b) {
+// like mechanism
+let buttons = document.querySelectorAll(".like-button");
+buttons.forEach(function (b) {
   b.addEventListener("click", function (e) {
     e.preventDefault();
+
+    // prevent click if previuse fetching is running
+    if (isFetching) {
+      return;
+    }
+    b.disabled = true;
+    isFetching = true;
 
     this.classList.toggle("active");
     this.classList.add("animated");
@@ -26,23 +35,27 @@ button.forEach(function (b) {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.already_liked){
-          this.classList.remove("active")
-          likeNumber.innerHTML--
-      
-        }else{
-          likeNumber.innerHTML++
+        if (data.already_liked) {
+          this.classList.remove("active");
+          likeNumber.innerHTML--;
+        } else {
+          likeNumber.innerHTML++;
         }
-        
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
+      .finally(() => {
+        // allowed to click sins fetching is done
+        isFetching = false;
+        b.disabled = false;
+      });
   });
 });
 
+// js code for like button animation
 function generateClones(button) {
-  let clones = randomInt(2, 4);
+  let clones = randomInt(4, 10);
   for (let it = 1; it <= clones; it++) {
-    let clone = button.querySelector("svg").cloneNode(true),
+    let clone = button.querySelector("svg").cloneNode(true), // create a deep copy(clone) of SVG element
       size = randomInt(5, 16);
     button.appendChild(clone);
     clone.setAttribute("width", size);
@@ -77,3 +90,22 @@ function plusOrMinus() {
 function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
+// dropdown menu
+function toggleDropdown(event) {
+  event.stopPropagation(); // prevent event bubbling
+  var dropdownContent = event.currentTarget.nextElementSibling;
+  dropdownContent.style.display =
+    dropdownContent.style.display === "none" ? "block" : "none";
+}
+
+// Close dropdown menus when clicking outside
+document.addEventListener("click", function (event) {
+  var dropdownContents = document.getElementsByClassName("dropdown-content");
+  for (var i = 0; i < dropdownContents.length; i++) {
+    var dropdownContent = dropdownContents[i];
+    if (dropdownContent.style.display === "block") {
+      dropdownContent.style.display = "none";
+    }
+  }
+});

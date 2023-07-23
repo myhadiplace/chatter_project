@@ -1,0 +1,132 @@
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  
+
+  .edit-profile-form {
+    max-width: 300px;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background: #f4f7f8;
+    border-radius: 8px;
+  }
+  
+
+   .edit-profile-form input[type="text"],
+   .edit-profile-form input[type="password"],
+   .edit-profile-form input[type="email"],
+   .edit-profile-form input[type="number"],
+   .edit-profile-form textarea,
+   .edit-profile-form select {
+    background: rgba(255,255,255,0.1);
+    border: none;
+    font-size: 16px;
+    height: auto;
+    margin: 0;
+    outline: 0;
+    padding: 15px;
+    width: 100%;
+    background-color: #e8eeef;
+    color: #8a97a0;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    margin-bottom: 30px;
+  }
+  
+  
+  .edit-profile-form select {
+    padding: 6px;
+    height: 32px;
+    border-radius: 2px;
+  }
+
+  input[type="file"]{
+    display: none;
+  }
+
+  .custom-file-button,input[type='submit']{
+    background: linear-gradient(to right,#ff9563 ,#f83600);
+    background-color: #ff9563;
+    color: #ffffff;
+    font-family: Trebuchet MS;
+    font-size: 18px;
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: none;
+    padding: 13px 16px;
+    border: 0px solid #000;
+    border-radius: 29px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+   }
+   .custom-file-button span{
+    margin-right: 16px;
+    display: block;
+    width: 26px;
+    height: 26px;
+    background-image: url("../../svg/upload-image.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: rotate(0deg);
+   }
+   .custom-file-button:hover{
+    background: linear-gradient(to right,#ffa37c ,#f96051);
+    background-color: #ffa37c;
+   }
+   .custom-file-button:active{
+    transform: scale(0.95);
+   }
+  
+   input[type="submit"] {
+    display: block;
+   }
+
+
+  
+  fieldset {
+    margin-bottom: 30px;
+    border: none;
+  }
+  
+  legend {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  label.light {
+    font-weight: 300;
+    display: inline;
+  }
+  
+  .number {
+    background-color: #5fcf80;
+    color: #fff;
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    font-size: 0.8em;
+    margin-right: 4px;
+    line-height: 30px;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+    border-radius: 100%;
+  }
+  
+  @media screen and (min-width: 480px) {
+  
+    .edit-profile-form {
+      max-width: 480px;
+    }
+  
+  }
+  
+  .errorlist {
+    color: #ff2929;
+  }

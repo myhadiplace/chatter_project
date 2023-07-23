@@ -1,24 +1,47 @@
 {% extends 'base.html' %} {%load static%} {% block 'title' %} home {%endblock%}
 {%block css_files %}
 <link rel="stylesheet" href="{% static 'chatter/include/css/post.css' %}" />
+<link rel="stylesheet" href="{% static 'chatter/include/css/twitte-form.css' %}" />
+<link rel="stylesheet" href="{% static 'chatter/css/home.css'%}">
 
 {% endblock %} 
 
 {% block content %} 
 
-{% for post in posts %} 
-
-{% include 'chatter/include/post.html' %} 
-
-{% endfor %} 
 
 
-<div id="posts-container"> </div>
+<div id="overlay" class="overlay  "></div>
+
+<div id="posts-container"> 
+    {% for post in posts %} 
+
+    {% include 'chatter/include/post.html' %} 
+
+    {% endfor %} 
+</div>
 
 
 
 
-<button class="load-more" type='submit'>Load Template</button>
+<div class="load-more">
+<button class="load-more-btn" type='submit'>More</button>
+</div>
+
+{% if logged_user %} 
+    <a class="new-twitte-btn" href="#"><span></span></a>
+    {% include "chatter/include/twitte-form.html"%}
+{% endif %}
+
+
 
 <script src="{% static 'chatter/js/load-more.js' %}"></script>
+
+{% comment %} twitte form js scripts {% endcomment %}
+<script src="https://cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+<script src="{% static 'chatter/include/js/medium-editor.js'%}"></script>
+<script src="{% static 'chatter/include/js/twitte-form.js' %}"> </script>
+
+
+
+
 {% endblock%}

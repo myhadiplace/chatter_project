@@ -131,6 +131,14 @@ def delete_twitte(twitte_id):
 # twittes_db = UpdateDatabase("twittes")
 # user_db = UpdateDatabase("users")
 
+def check_language(text):
+    farsi_alphabet = ["ا","ب","پ","ث","ج","چ","ح","ح","خ","د","ذ","ر","ز","ژ","س","ش","ص","ض","ط","ظ","ع","غ","ف","ق","ک","گ","ل","م","ن","و","ه","ی"]
+    for char in text:
+        if char in farsi_alphabet:
+            return "fa"
+        
+    return "en"
+
 
 CONTENT_NUMBER = 3
 
@@ -146,7 +154,7 @@ class RenderPost(View):
             for dbref in followings_dbref:
                 try:
                     # find Nth twitte of user and create a template content
-                    post = db.twittes.find({"user": dbref}).skip(
+                    post = db.twittes.find({"user": dbref,"type":'twitte'}).skip(
                         int(content_number/3)).limit(1)
                     template_content = render_to_string(
                         "chatter/include/post.html", {"post": post[0], 'logged_user': logged_user})
@@ -154,6 +162,8 @@ class RenderPost(View):
                 except IndexError:
                     template_content = []
                     print('No document found')
+                    
+                    
 
                 post_context.append(template_content)
             request.session["all_contents"] += 3
@@ -182,20 +192,25 @@ class Home(View):
 
         logged_user_username = request.session.get("username")
         logged_user = find_user(logged_user_username)
-        if logged_user_username:
+        
+        if logged_user_username and logged_user['followersNum'] != 0:
             posts = []
             followings_dbref = logged_user["followings"]
 
             for dbref in followings_dbref:
                 post = db.twittes.find({"user": dbref})[0]
                 posts.append(post)
+            # render send twitte form
+            form = TwitteForm()
 
         else:
+            form= None
             posts = db.twittes.find({"type": "twitte"})[0:3]
 
         return render(
             request, "chatter/home.html", {"posts": posts,
-                                           "logged_user": logged_user}
+                                           "logged_user":logged_user,
+                                           "form":form}
         )
 
 
@@ -213,8 +228,12 @@ def profile_page_index(request, username):
     if logged_in_user:
         # check if logged user followed user or not
         followed = is_already_followed(logged_in_user["user_name"], username)
+        #render twitte form
+        form = TwitteForm()
     else:
         followed = None
+        form = None
+        
 
     return render(
         request,
@@ -224,6 +243,7 @@ def profile_page_index(request, username):
             "posts": user_twittes,
             "logged_user": logged_in_user,
             "followed": followed,
+            "form":form
         },
     )
 
@@ -243,9 +263,11 @@ def post_twitte(request, username):
             publishedAt = form.cleaned_data["publishedAt"]
             user_id = request.session.get("user_id")
             db.twittes.insert_one({'text': "somedummy text"})
+            
             document = {
                 "publishedAt": publishedAt,
                 "text": text,
+                "textLanguage": check_language(text),
                 "user": DBRef("users", ObjectId(user_id)),
                 "user_info": {
                     "name": user["name"],
@@ -262,18 +284,13 @@ def post_twitte(request, username):
             insert_document("twittes", document)
 
             redirect_path = reverse(
-                "posttwitte", args=[request.session.get("username")])
+                "status", args=[request.session.get("username")])
             return HttpResponseRedirect(redirect_path)
+        
+        
 
-    else:
-        form = TwitteForm()
-        # Checking whether the user has permission to access the tweet sending page or not
-        if request.session.get("user_id") == str(user["_id"]):
-            pass
-        else:
-            return HttpResponseForbidden("You are not authorized to access this page.")
 
-    return render(request, 'chatter/post_twitte_page.html', {
+    return render(request, 'chatter/single-page.html', {
         "form": form,
         "user": user,
         "posts": user_twittes,
@@ -477,19 +494,22 @@ class ReplayTwitte(View):
 
             # which twitte did that person reply to
             to_reply_post = find_single_twitte(postid)
+            print(to_reply_post)
 
             if to_reply_post["type"] == "reply":
                 reply_chain = to_reply_post["replyTo"]
                 new_reply = DBRef("twittes", ObjectId(postid))
                 reply_chain.append(new_reply)
+            
             else:
                 reply_chain = [DBRef("twittes", ObjectId(postid))]
+                
 
             # add logged user reply document to twitte collection with type of reply
             query = {
                 "publishedAt": publishedAt,
                 "text": text,
-                "textLanguage": 'en',
+                "textLanguage": ckech_language(text),
                 "user": DBRef("users", ObjectId(logged_user_obj["_id"])),
                 "user_info": {
                     "name": logged_user_obj["name"],
@@ -617,7 +637,22 @@ def sing_up_user(request):
     if request.method == "POST":
         form = CreateUserForm(request.POST)
         if form.is_valid():
+            #insert user data to databse
             db.users.insert_one(form.cleaned_data)
+            #add additional needed data
+            additional_data = {
+                "profile_img":"default-profile-pic.jpg",
+                "banner":"banner.jpg",
+                "bio":"new on twitter",
+                "twittes":None,
+                "followers":[],
+                "followings":[],
+                "followersNum":0,
+                "followingsNum":0,
+                "postNum":0,
+                "likedPosts":0
+            }
+            db.users.update_one({"user_name":form.cleaned_data['user_name']},{"$set":additional_data })
             return HttpResponseRedirect(reverse("login"))
 
     else:
@@ -625,7 +660,7 @@ def sing_up_user(request):
 
         already_logged = request.session.get("username")
 
-        return render(request, "chatter/authentication/sing_up.html", {"form": form, "already_logged": already_logged, "logged_user": logged_user})
+        return render(request, "chatter/registration/sing-up.html", {"form": form, "already_logged": already_logged, "logged_user": logged_user})
 
 
 def login_user(request):
@@ -646,14 +681,14 @@ def login_user(request):
                 request.session["user_id"] = user_id
                 request.session["username"] = user_name
 
-                redirect_path = reverse("posttwitte", args=[user_name])
+                redirect_path = reverse("status", args=[user_name])
 
                 return HttpResponseRedirect(redirect_path)
             else:
                 error = "user name or password are incorrecct"
                 return render(
                     request,
-                    "chatter/authentication/login.html",
+                    "chatter/registration/sign-in.html",
                     {"form": form, "error": error},
                 )
 
@@ -664,7 +699,7 @@ def login_user(request):
         form = LoginUserForm()
     return render(
         request,
-        "chatter/authentication/login.html",
+        "chatter/registration/sign-in.html",
         {"form": form, "logged_user": logged_user, "logged": logged_in},
     )
 
